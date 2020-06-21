@@ -1,6 +1,8 @@
 # Happy-House
-Happy House Web PJT 소개
+## Happy House Web PJT 소개
+:dash: [시연영상 링크](https://github.com/hyungtaik/Happy-House/blob/master/%EC%82%B0%EC%B6%9C%EB%AC%BC/HappyHouse_%EC%84%9C%EC%9A%B8_7%EB%B0%98_%EA%B9%80%ED%98%95%ED%83%9D_%EC%9D%B4%EC%88%98%EC%97%B0_%EC%B5%9C%EC%A2%85%EC%99%84%EB%A3%8C%EB%B3%B4%EA%B3%A0%EC%84%9C.pptx)
 
+-----------------------------------------------
 ![image](https://user-images.githubusercontent.com/39832802/85221961-04f7e080-b3f3-11ea-933c-8013308f22a1.png)
 ![image](https://user-images.githubusercontent.com/39832802/85222059-9d8e6080-b3f3-11ea-9757-09590238bb67.png)
 ![image](https://user-images.githubusercontent.com/39832802/85221964-0c1eee80-b3f3-11ea-9110-dd78cad4264c.png)
