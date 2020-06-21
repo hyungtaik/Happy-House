@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.ssafy.happyhouse.dao.HouseInfoDao">
+
+	<!-- bean객체를 이용한 주택정보 전체 검색  -->
+	<select id="searchAllDong" parameterType="HousePageBean" resultType="HouseInfo">
+		select distinct * from houseInfo where 1=1 and dong like CONCAT('%',#{dong},'%') limit 100
+	</select>
+	
+	<select id="searchAllApt" parameterType="HousePageBean" resultType="HouseInfo">
+		select distinct * from houseInfo where 1=1 and AptName like CONCAT('%',#{AptName},'%') limit 100
+	</select>
+
+	<!-- deal객체를 이용한 해당 주택에 대한 주택 정보 검색 -->
+	<select id="search" parameterType="HouseDeal" resultType="HouseInfo">
+		select distinct * from houseInfo where dong=#{dong} and AptName=#{aptName} limit 1;
+	</select>
+	
+	<!-- dong코드를 이용한 전체 주택정보 검색 -->
+	<select id="searchAllHouseInfo" parameterType="String" resultType="HouseInfo">
+		select * from HouseInfo where dong=#{dong}
+	</select>
+	<!-- dong코드를 이용한 전체 주택정보 검색 -->
+	<select id="searchAllHouseInfoCnt" parameterType="String" resultType="int">
+		select count(*) from HouseInfo where dong=#{dong}
+	</select>
+	<!-- dong코드를 이용한 전체 주택정보 검색 -->
+	<select id="searchAllHouseInfoPage" parameterType="HousePageBean" resultType="HouseInfo">
+		select * from HouseInfo where dong=#{dong} order by no desc limit #{pageSize} offset #{startIndex}
+	</select>
+	
+	<!-- houseinfo 객체를 이용한 house 정보 insert -->
+	<insert id="insertHouseInfo1" parameterType="HouseInfo">
+	insert into HouseInfo (dong,AptName,code,buildYear,jibun,lat,lng,img) values (#{dong},#{AptName},#{code},#{buildYear},#{jibun},#{lat},#{lng},#{img})
+	</insert>
+	
+	<!-- deal객체를 이용한 정보 insert -->
+	<insert id="insertHouseInfo2" parameterType="HouseDeal">
+		insert into HouseInfo (dong,AptName,code,buildYear,jibun,lat,lng,img) values (#{dong},#{AptName},#{code},#{buildYear},#{jibun},#{lat},#{lng},#{img})
+	</insert>
+	
+</mapper>
+
+
+
+
+
+

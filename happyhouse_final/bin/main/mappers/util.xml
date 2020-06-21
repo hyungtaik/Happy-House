@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.ssafy.happyhouse.dao.UtilDao">
+
+	<!-- city(시/도) 검색  -->
+	<select id="getcity" resultType="utildto">
+		SELECT sido_name,sido_code 
+		FROM sidocode
+		ORDER BY sido_code
+	</select>
+	
+	<!-- gu(군/구) 검색  -->
+	<select id="getgu" parameterType="string" resultType="utildto">
+		SELECT distinct gugun as gugun_name
+		FROM dongcode
+		WHERE city like #{city} and length(gugun)>0
+	</select>
+	
+	<!-- dong(동) 검색  -->
+	<select id="getdong" parameterType="string" resultType="utildto">
+		SELECT distinct dong
+		FROM dongcode
+		WHERE gugun like #{gu} and length(dong)>0
+	</select>
+	
+	<!-- 동코드 검색 -->
+	<select id="getdongcode" parameterType="string" resultType="string">
+		SELECT dongcode
+		FROM dongcode
+		WHERE dong = #{dong} and city="서울특별시";
+	</select>
+</mapper>
+
+
+
+
+
+

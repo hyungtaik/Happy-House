@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.ssafy.happyhouse.dao.UserDao">
+
+	<!-- 로그인  -->
+	<select id="login" parameterType="userdto" resultType="userdto">
+		select id, name,email,phone,auth from user where id = #{id} and pwd = #{pwd}
+	</select>
+
+	<!-- 회원 가입 -->
+	<insert id="register" parameterType="userdto">
+		insert into user(id,pwd,name,email,phone) values(#{id},#{pwd},#{name},#{email},#{phone})
+	</insert>
+	
+	<!-- 비밀번호 찾기 -->
+	<select id="findPwd" parameterType="userdto" resultType="userdto">
+		select id,pwd from user where phone=#{phone} and email=#{email}
+	</select>
+	
+	<!-- ID로 사용자 검색 -->
+	<select id="search" parameterType="String" resultType="userdto">
+		select id,pwd,name,email,phone,auth from user where id=#{id}
+	</select>
+	
+	<!-- 회원정보 수정 -->
+	<update id="modify" parameterType="userdto">
+		update user set pwd=#{pwd}, name=#{name}, email=#{email}, phone=#{phone} where id=#{id}
+	</update>
+	
+	<!-- 회원 탈퇴 -->
+	<delete id="delete" parameterType="String">
+		delete from user where id=#{id}
+	</delete>
+	
+	<!-- 이메일 중복 체크 -->
+	<select id="emailcheck" parameterType="String" resultType="userdto">
+		select id,pwd,name,email,phone,auth from user where email=#{email} limit 1;
+	</select>
+</mapper>
+
+
+
+
+
+

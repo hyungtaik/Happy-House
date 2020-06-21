@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.ssafy.happyhouse.dao.FavDao">
+
+	<!-- 관심지역 찾기  -->
+ 	<select id="searchFavArea" parameterType="string" resultType="favdto">
+		select * from favoritearea where user_id = #{id}
+	</select>
+	
+	<!-- 관심지역 등록  -->
+	<insert id="insertFavArea" parameterType="favdto">
+		INSERT 	INTO FAVORITEAREA (user_id, city, gu, dong)
+		VALUES (#{userId}, #{city}, #{gu}, #{dong}) 
+	</insert>
+	
+	<!-- 관심지역 삭제  -->
+	<delete id="deleteFavArea" parameterType="string">
+		delete from favoritearea where user_id=#{id}
+	</delete>
+	
+	<!-- String 객체로 dong로 동 검색 -->
+	<select id="searchDong" parameterType="hashmap" resultType="housedeal">
+		select no,AptName,dong,dealAmount, area, type, buildYear,dealYear,dealMonth,dealDay 
+		from housedeal where dong like CONCAT('%',#{dong},'%') 
+		limit #{limit} offset #{offset}
+	</select>
+	
+	<!-- String 객체로 dong로 동 검색 -> 개수 리턴 -->
+	<select id="searchDongCnt" parameterType="string" resultType="int">
+		select count(*)
+		from housedeal where dong like CONCAT('%',#{dong},'%')
+	</select>
+	
+		<!-- 관심 지역 상권 정보  -->
+	<select id="searchFavStore" parameterType="hashmap" resultType="storedto">
+		SELECT no, shopname, codename3, address, lng, lat
+		FROM storeinfo
+		WHERE dong = #{dong}
+		limit #{limit} offset #{offset}
+	</select>
+	
+	<!-- String 객체로 dong로 동 검색 -> 개수 리턴 -->
+	<select id="searchStoreCnt" parameterType="string" resultType="int">
+		select count(*)
+		from storeinfo 
+		where dong = #{dong}
+	</select>
+	
+</mapper>
+
+
+
+
+
+

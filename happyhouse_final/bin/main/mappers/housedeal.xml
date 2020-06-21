@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.happyhouse.dao.HouseDealDao">
+
+	<!-- 선택한 type의 총 거래정보 count -->
+	<select id="searchHouseDealCnt1" parameterType="HousePageBean"
+		resultType="int">
+		select count(*) from housedeal where 1=1 and type in (1) and dong like CONCAT('%',#{dong},'%') or AptName like CONCAT('%',#{aptName},'%')
+	</select>
+	<select id="searchHouseDealCnt2" parameterType="HousePageBean"
+		resultType="int">
+		select count(*) from housedeal where 1=1 and type in (1) and AptName like CONCAT('%',#{aptName},'%')
+	</select>
+	<select id="searchHouseDealCnt3" parameterType="HousePageBean"
+		resultType="int">
+		select count(*) from housedeal where 1=1 and type in (1) and dong like CONCAT('%',#{dong},'%')
+	</select>
+	<select id="searchHouseDealCnt" parameterType="HousePageBean"
+		resultType="int">
+		select count(*) from housedeal where 1=1 and type in (1);
+	</select>
+
+	<!-- bean객체로 Dong 검색 -->
+	<select id="searchDong1" parameterType="HousePageBean"
+		resultType="HouseDeal">
+		select no,AptName,dealAmount,area, dealYear, dealMonth, dealDay, dong from housedeal where 1=1 and type in (1) and dong like CONCAT('%',#{dong},'%') order by no desc limit #{pageSize} offset #{startIndex}
+	</select>
+	
+	<!-- String 객체로 dong로 동 검색 -->
+	<select id="searchDong2" parameterType="String" resultType="HouseDeal">
+		select no,AptName,dong,dealAmount, area, type, buildYear,dealYear,dealMonth,dealDay from housedeal where dong like CONCAT('%',#{dong},'%')
+	</select>
+
+	<!-- bean객체로 name검색 -->
+	<select id="searchHouseName" parameterType="HousePageBean" resultType="HouseDeal">
+		select no,AptName,dealAmount,area, dealYear, dealMonth, dealDay, dong from housedeal where 1=1 and type in (1) and AptName like CONCAT('%',#{aptName},'%') order by no desc limit #{pageSize} offset #{startIndex}
+	</select>
+
+	<!-- bean객체로 Dong,House 검색 -->
+	<select id="searchMulti1" parameterType="HousePageBean"
+		resultType="HouseDeal">
+		select no,AptName,dealAmount,area, dealYear, dealMonth, dealDay, floor,dong from housedeal where 1=1 and type in (1) and dong like CONCAT('%',#{dong},'%') or AptName like CONCAT('%',#{aptName},'%') order by no desc
+	</select>
+	
+	<select id="searchMulti2" parameterType="HousePageBean"
+		resultType="HouseDeal">
+		select no,AptName,dealAmount,area, dealYear, dealMonth, dealDay, floor,dong from housedeal where 1=1 and type in (1) and dong like CONCAT('%',#{dong},'%') order by no desc
+	</select>
+	
+	<select id="searchMulti3" parameterType="HousePageBean"
+		resultType="HouseDeal">
+		select no,AptName,dealAmount,area, dealYear, dealMonth, dealDay, floor,dong from housedeal where 1=1 and type in (1) and AptName like CONCAT('%',#{aptName},'%') order by no desc
+	</select>
+
+	<!-- bean객체로 Dong,House 전체 검색 -->
+	<select id="searchAll" parameterType="HousePageBean"
+		resultType="HouseDeal">
+		select no,AptName,dealAmount,area, dealYear, dealMonth, dealDay, dong from housedeal where 1=1 and type in (1) order by no desc limit #{pageSize} offset #{startIndex}
+	</select>
+
+	<!-- no로 Dong,House 상세 검색 -->
+	<select id="searchDetail1" parameterType="int"
+		resultType="HouseDeal">
+		SELECT d.no, d.dong, d.AptName, d.code, d.dealAmount, d.buildYear, d.dealYear, d.dealMonth, d.dealDay, d.area, d.floor, d.jibun, d.rentMoney, d.type, i.img 
+		FROM housedeal as d RIGHT OUTER JOIN houseinfo as i ON d.AptName = i.AptName WHERE (d.dong, d.AptName) in (SELECT dong, AptName FROM housedeal WHERE no = #{no})
+	</select>
+
+	<!-- AptName으로 상세 검색 -->
+	<select id="searchDetail2" parameterType="String" resultType="HouseDeal">
+		select* from housedeal where AptName like CONCAT('%',#{aptName},'%')
+	</select>
+	
+	<!-- deal객체로 insert -->
+	<insert id="insertHouseDeal" parameterType="HouseDeal">
+		insert into HouseDeal 
+		(dong, AptName,code,dealAmount,buildYear,dealYear,dealMonth,dealDay,area,floor,jibun,type,rentMoney) values
+		(#{dong},#{aptName},#{code},#{dealAmount},#{buildYear},#{dealYear},#{dealMonth},#{dealDay},#{dealDay},#{area},#{jibun},#{type},#{rentMoney})
+	</insert>
+
+	
+</mapper>
+
+
+
+
+
+
