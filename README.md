@@ -1,4 +1,10 @@
 # Happy-House
+![version](https://img.shields.io/badge/version-0.0.1-orange?)
+![vue](https://img.shields.io/badge/vue-3.0.0-blue?logo=Vue.js)
+![spring-boot](https://img.shields.io/badge/springboot-4.0.0-yellow?logo=spring)
+![html](https://img.shields.io/badge/html-html5-red?logo=html5)
+![css](https://img.shields.io/badge/css-css3-red?logo=css3)
+![javascript](https://img.shields.io/badge/javascript-es6-yellowgreen?logo=javascript)
 ## Happy House Web PJT 소개
 :dash: [시연영상 링크](https://github.com/hyungtaik/Happy-House/blob/master/%EC%82%B0%EC%B6%9C%EB%AC%BC/HappyHouse_%EC%84%9C%EC%9A%B8_7%EB%B0%98_%EA%B9%80%ED%98%95%ED%83%9D_%EC%9D%B4%EC%88%98%EC%97%B0_%EC%B5%9C%EC%A2%85%EC%99%84%EB%A3%8C%EB%B3%B4%EA%B3%A0%EC%84%9C.pptx)
 
